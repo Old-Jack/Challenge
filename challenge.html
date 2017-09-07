@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Mon challenge QUIZZ</title>
+	<style type ="text/css">
+	body {
+		font-family: impact;
+	}
+
+	#test {
+		width: 500px;
+		margin: auto;
+	}
+
+	#test_status {
+		width: 500px;
+		margin: auto;
+	}
+	</style>
+
+	<script type="text/javascript">
+	var pos = 0, test, test_status, questions, choice, choices, chA, chB, chC, correct = 0;
+	var questions = [
+		["Combien font 1+1 ?","Deux", "Un", "Onze", "A"],
+		["Qu'est ce qui est Jaune et qui attend ?", "Un chinois devant un arrêt de bus", "Jonathan", "La réponse D", "B"],
+		["Lorsqu'un pancake tombe dans la neige avant le 31 décembre on dit que :", "Que c'est un pancake tombé dans la neige avant le 31 décembre", "Que c'est une Kippa surgelée", "Que c'est un frisbee comestible", "B"],
+		["Quel est le nom du démon que maitrise Alucard dans Hellsing ?", "Satan", "Chromwell", "Cromwell", "C"],
+		["Nom de la musique des Casseurs Flowers contenant : Bimbadabim bimbadaboum ", "Inachevé", "Ils sont cools", "La Terre est Ronde", "B"],
+		["Quel est le nom de l'équipement que porte Eren dans Shingeki No Kyojin ?", "Equipement à trois Dimensions", "Equipement Tridimensionnelle", "Super-équipement", "B"],
+		["Quel sort n'est pas un Sortilège Impardonnable dans Harry Potter ? Question Traître =)", "Imperio", "Avada Kedavra", "Doloris", "A"],
+		["Completer cette phrase : 	La vie c'est comme une boite de chocolat ...", "J'aime pas les noirs", "qu'il ne faut pas manger", "on ne sait jamais sur quoi on va tomber", "C"],
+		["Au bord de quelle mer est située la station balnéaire de Yalta ?", "C'est la mer noire", "C'est la mer du Nord", "C'est la mer de Crète", "A"],
+		["Quel est le numéro de cette question ?", "Neuf", "Dix", "Onze", "B"]
+	];
+
+	function _(x){
+		return document.getElementById(x);
+	}
+
+	function renderQuestion(){
+		test = _("test");
+		if (pos >= questions.length) {
+			test.innerHTML = "<h2> GG POUR TES" + correct + "POINTS POUR" + questions.length +"QUESTIONS </h2>";
+			_("test_status").innerHTML = "A+";
+			pos = 0;
+			correct = 0;
+			return false;
+		}
+		_("test_status").innerHTML = "questions" + (pos+1) + "sur" + questions.length;
+		question = questions[pos][0];
+		chA = questions[pos][1];
+		chB = questions[pos][2];
+		chC = questions[pos][3];
+		test.innerHTML = "<h3>"+question+"<h3>";
+		test.innerHTML += "<input type='radio' name ='choice' value='A'>"+chA+"<br>";
+		test.innerHTML += "<input type='radio' name ='choice' value='B'>"+chB+"<br>";
+		test.innerHTML += "<input type='radio' name ='choice' value='C'>"+chC+"<br>";
+		test.innerHTML +="<button onclick='checkAnswer()' Suite </button>";
+	
+	}
+
+	function checkAnswer(){
+		choices = document.getElementsByName("choice");
+		for (var i = 0; i = choices.length; i++){
+			if(document.getElementsByName("choice").checked){
+				choice = choices[i].value;
+			}
+		}
+		if (choice == questions[pos][4]){
+			correct++;
+		}
+		pos++;
+		renderQuestion();
+	}
+	window.addEventListener("load", renderQuestion, false);
+
+	</script>
+</head>
+	<body>
+		<h2 id="test_status"></h2>
+		<fieldset id="test">
+			<legends> Liste des Questions </legends>
+
+		</fieldset>
+
+	</body>
+</html>
